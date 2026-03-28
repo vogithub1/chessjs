@@ -386,7 +386,8 @@ function SetSqSelected(sq) {
 }
 
 function StartSearch() {
-  srch_depth = MAXDEPTH;
+  //srch_depth = MAXDEPTH;
+	srch_depth = parseInt($("#DifficultyChoice").val());
   var t = $.now();
   var tt = $("#ThinkTimeChoice").val();
   console.log("time:" + t + " TimeChoice:" + tt);
