@@ -297,9 +297,16 @@ function EvalPosition() {
   if (brd_pceNum[PIECES.wB] >= 2) score += BishopPair;
   if (brd_pceNum[PIECES.bB] >= 2) score -= BishopPair;
 
+if (DIFFICULTY_LEVEL < 5) {
+    var noiseRange = (5 - DIFFICULTY_LEVEL) * 50; // уровень 1: ±200, уровень 4: ±50
+    score += Math.floor(Math.random() * noiseRange * 2) - noiseRange;
+  }
+
   if (brd_side == COLOURS.WHITE) {
     return score;
   } else {
     return -score;
   }
+
+  
 }
