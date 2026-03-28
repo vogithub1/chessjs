@@ -385,7 +385,7 @@ function SetSqSelected(sq) {
   });
 }
 
-function StartSearch() {
+function StartSearch_orig() {
   //srch_depth = MAXDEPTH;
 	srch_depth = parseInt($("#DifficultyChoice").val());
   var t = $.now();
@@ -400,6 +400,21 @@ function StartSearch() {
   $("#ThinkingPng").remove();
   CheckAndSet();
 }
+
+function StartSearch() {
+  srch_depth = parseInt($("#DifficultyChoice").val());
+  var tt = $("#ThinkTimeChoice").val();
+  // На низких уровнях время не имеет смысла — глубина и так мала
+  // Ставим маленький таймаут чтобы движок не уходил глубже через srch_stop
+  srch_time = srch_depth <= 3 ? 30000 : parseInt(tt) * 1000;
+  console.log("srch_depth: " + srch_depth + " srch_time: " + srch_time);
+  SearchPosition();
+  MakeMove(srch_best);
+  MoveGUIPiece(srch_best);
+  $("#ThinkingPng").remove();
+  CheckAndSet();
+}
+
 
 $("#TakeButton").click(function () {
   console.log("TakeBack request... brd_hisPly:" + brd_hisPly);
