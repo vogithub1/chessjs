@@ -401,8 +401,11 @@ function StartSearch_orig() {
   CheckAndSet();
 }
 
-function StartSearch() {
-  srch_depth = parseInt($("#DifficultyChoice").val());
+function StartSearch()
+{
+DIFFICULTY_LEVEL = parseInt($("#DifficultyChoice").val());
+	srch_depth = DIFFICULTY_LEVEL;
+	
   var tt = $("#ThinkTimeChoice").val();
   // На низких уровнях время не имеет смысла — глубина и так мала
   // Ставим маленький таймаут чтобы движок не уходил глубже через srch_stop
